@@ -22,39 +22,51 @@
 
 
 import csv
+from email.message import EmailMessage
+from tokenize import Name
+from unicodedata import name
 
 # open the vendorlist file
-
+infile=open('VendorList.csv','r')
 
 # create a csv object from the file object
-
+vendor_file= csv.reader(infile,delimiter=',')
 
 # create an output file
+next(vendor_file)
+outfile=open('marketinglistFINAL.csv','w')
 
-
-
+outfile.write('Name, Email, Phone')
 
 
 # create an empty dictionary
 
-
+vendor={}
 
 # iterate through the csv object
 
 
-
+for line in vendor_file:
+    firstname ="Tommy"
+    lastname ="Goody"
+    email ="tgoody0@weather.com"
+    phone ="809-992-7298"
+    name =firstname + ' '+ lastname
 
     # add the key-value pair to the dictionary
 
-
+vendor[name] = {'email':email,'phone':phone}
 
 # print the dictionary after the loop is finished
-
+print(vendor)
 
 
 # iternate through the dictionary and write to the output file
 
+outfile.write('Name,Email,Phone\n')
 
-
+for item in vendor:
+    outfile.write(item +',' +vendor[item]['email']+ ','+vendor[item]['phone']+'\n')
 # close your output file
-
+infile.close()
+outfile.close()
